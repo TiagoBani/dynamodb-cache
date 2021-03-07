@@ -19,12 +19,12 @@ docker-compose up -d
 ```
 
 *Rodando local*
-0. Antes de tudo, rode o comando `npm install`;
-0. Caso queira rodar o banco localmente com Docker, pode-se utilizar o comando `docker-compose up -d postgres` para subir o banco;
-0. Renomeie o arquivo `.env.example` para `.env` e edite as variáveis para conexão com o banco;
-0. Rode o comando `npm run sequelize:migrate` para gerar as tabelas;
-0. Rode o comando `npm run sequelize:seed` para criar dados de exemplo nas tabelas;
-0. Rode o comando `npm run dev` para rodar o projeto usando nodemon.
+- Antes de tudo, rode o comando `npm install`;
+- Caso queira rodar o banco localmente com Docker, pode-se utilizar o comando `docker-compose up -d postgres` para subir o banco;
+- Renomeie o arquivo `.env.example` para `.env` e edite as variáveis para conexão com o banco;
+- Rode o comando `npm run sequelize:migrate` para gerar as tabelas;
+- Rode o comando `npm run sequelize:seed` para criar dados de exemplo nas tabelas;
+- Rode o comando `npm run dev` para rodar o projeto usando nodemon.
 
 
 ### Testando
