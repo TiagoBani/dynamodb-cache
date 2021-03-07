@@ -1,13 +1,37 @@
 version: '3.7'
 
 services:
+  dynamodb:
+    image: amazon/dynamodb-local
+    hostname: dynamodb-local
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+
+  dynamodb-init:
+    build: dynamodb-init
+    depends_on:
+      - dynamodb
 
   postgres:
-    image: postgres:latest
-    hostname: postgres
+    image: postgres:13-alpine
     environment:
-      POSTGRES_DB: example_database
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: patients
+      POSTGRES_DB: patients
+      POSTGRES_PASSWORD: "secret"
     ports:
       - "5432:5432"
+
+  app:
+    image: node:14.16.0-alpine3.12
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - dynamodb
+    command: ash -c "yarn install && yarn sequelize:migrate && yarn sequelize:seed && yarn dev"
+
+    
